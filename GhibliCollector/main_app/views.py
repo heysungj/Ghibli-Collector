@@ -1,21 +1,7 @@
 from django.shortcuts import render
-
+from .models import Movie
 # Add the following import
 from django.http import HttpResponse
-
-# Add the Cat class & list and view function below the imports
-class Movie:  # Note that parens are optional if not inheriting from another class
-  def __init__(self, name, release, director, music):
-    self.name = name
-    self.release = release
-    self.director = director
-    self.music = music
-
-movies = [
-  Movie('Ponyo', '2008', 'Hayao Miyazaki', 'Joe Hisaishi'),
-  Movie('Spirited Away', '2001', 'Hayao Miyazaki', 'Joe Hisaishi'),
-  Movie('My Neighbor Totoro', '1988', 'Hayao Miyazaki', 'Joe Hisaishi')
-]
 
 # Define the home view
 def home(request):
@@ -26,4 +12,9 @@ def about(request):
 
 # Add new view
 def movies_index(request):
+  movies = Movie.objects.all()
   return render(request, 'movies/index.html', { 'movies': movies })
+
+def movies_detail(request, movie_id):
+  movie = Movie.objects.get(id=movie_id)
+  return render(request, 'movies/detail.html', { 'movie': movie })
