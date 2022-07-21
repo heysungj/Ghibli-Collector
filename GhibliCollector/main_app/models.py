@@ -10,11 +10,23 @@ TIME = (
   ('N', 'Night')
 )
 
+class Actor(models.Model):
+    
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('actors_detail', kwargs={'pk': self.id})
+
 class Movie(models.Model):
     name = models.CharField(max_length=100)
     release = models.IntegerField()
     director = models.CharField(max_length=100)
     music = models.CharField(max_length=100)
+     # Add the M:M relationship
+    actors = models.ManyToManyField(Actor)
     # new code below
     def __str__(self):
         return self.name
