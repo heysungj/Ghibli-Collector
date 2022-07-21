@@ -8,18 +8,21 @@
   <title>Ghibli Collector</title>
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
   <header class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
         <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;GhibliCollector</a></li>
+          <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;GhibliCollector</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+
+          <li><a href="{% url 'movies_create' %}">Add a Movie</a></li>
           <!-- new markup below -->
-          <li><a href="/movies">View All Ghibli Movies</a></li>   
+          <li><a href="{% url 'index' %}">View All Ghibli Movies</a></li>   
         </ul>
       </div>
     </nav>
